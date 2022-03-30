@@ -1,0 +1,36 @@
+1.
+
+
+
+.general training and knowledge distillation training, a custom 8‐layered
+Convolutional Neural Network model was used as a feature extractor
+In all the
+training procedure, total data was divided into training, testing and validation group as perthe ration
+80:10:10. All experiments was performed o
+In order to optimize and to obtain better performances, data augmentation, without
+augmentation, classification using SVM and KNN was performed. For the augmentation experiment,
+augmentation as per the Table 1 was applied first. While performing 64 × 64 augmentation
+experiment, original image was resized to (64, 64) before applying augmentation where
+augmentation was performed after resizing original image into (32, 32) for the experiment of 32 × 32
+augmentation. In both experiments, data was fed into the model according to batch size 32. For the
+without augmentation training, plain data was fed into the model according to batch size 64 after
+resizing the original image to (64, 64) or (32, 32) as per the experiment requirement. Weights and
+biases of all trainable parameters were randomly initialized at the beginning of training. To optimize
+the weights and biases, Stochastic Gradient Descent (SGD) [63] optimizer was used while performing
+the forward propagation. The learning rate was set to 0.001 with a momentum of 0.9. While
+performing back‐propagation to calculate the error and update the weights and biases, cross entropy,
+shown in Equation (9), was used as a loss function. Predicted result and combined validation loss
+and accuracy of augmentation and without augmentation experiment for both image sizes are
+depicted in    Figure 5;    Figure 6, respectively.
+𝐿𝑜𝑠𝑠 ൌ െሺ𝑦 𝑙𝑜𝑔ሺ𝑝ሻ ൅ ሺ1 െ 𝑦ሻ logሺ1 െ 𝑝ሻሻ (9)
+In the experiment of CNN‐SVM and CNN‐KNN, a CNN model was used to extract the features.
+Later these features were classified through SVM or KNN as per the objective of our experiment. The
+outline of this architecture is depicted
+
+
+ knowledge distillation: a pretrained 146 layers custom ResNet model [70] was taken as a teacher
+model, whereas a custom 8 layers CNN model (showed in Figure 4) acted as a student model. In
+order to mimic the teacher model, initially using the pretrained teacher model, the softmax value of
+training images was recorded and also the training label was predicted. Later, the softmax value of
+training images was swapped if the teacher model mis‐predicts the training label. This corrected
+softmax value was used as a training label while training student model
